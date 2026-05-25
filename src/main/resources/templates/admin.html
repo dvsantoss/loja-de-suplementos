@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Painel Administrativo')}"></head>
+<body>
+
+<div th:replace="~{layout :: nav}"></div>
+<div th:replace="~{layout :: alertas}"></div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Gerenciamento de Suplementos</h3>
+                    <a th:href="@{/cadastro}" class="primary-btn pull-right">Cadastrar Novo Item</a>
+                </div>
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>SKU</th>
+                        <th>Preço</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="suplemento : ${suplementos}">
+                        <td th:text="${suplemento.id}">1</td>
+                        <td th:text="${suplemento.nome}">Whey</td>
+                        <td th:text="${suplemento.codigoSku}">WHE-1234</td>
+                        <td th:text="|R$ ${suplemento.preco}|">R$ 100.00</td>
+
+                        <td>
+                            <span th:if="${suplemento.isDeleted == null}" class="label label-success">Ativo</span>
+                            <span th:if="${suplemento.isDeleted != null}" class="label label-danger">Deletado</span>
+                        </td>
+
+                        <td>
+                            <a th:href="@{/editar(id=${suplemento.id})}" class="btn btn-warning btn-sm">Editar</a>
+
+                            <a th:if="${suplemento.isDeleted == null}" th:href="@{/deletar(id=${suplemento.id})}" class="btn btn-danger btn-sm">Deletar</a>
+
+                            <a th:if="${suplemento.isDeleted != null}" th:href="@{/restaurar(id=${suplemento.id})}" class="btn btn-success btn-sm">Restaurar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

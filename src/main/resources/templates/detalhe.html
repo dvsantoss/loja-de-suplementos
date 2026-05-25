@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Detalhes do Produto')}"></head>
+<body>
+
+<div th:replace="~{layout :: nav}"></div>
+<div th:replace="~{layout :: alertas}"></div>
+
+<div id="breadcrumb" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    <li><a th:href="@{/index}">Home</a></li>
+                    <li><a href="#" th:text="${suplemento.tipo}">Categoria</a></li>
+                    <li class="active" th:text="${suplemento.nome}">Nome do Produto</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div id="product-main-img">
+                    <div class="product-preview">
+                        <img th:src="@{${suplemento.imgUrl}}" alt="Imagem do Suplemento" style="width: 100%; border-radius: 10px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="product-details">
+                    <h2 class="product-name" th:text="${suplemento.nome}">Nome do Suplemento</h2>
+                    <div>
+                        <h3 class="product-price" th:text="|R$ ${suplemento.preco}|">R$ 00.00</h3>
+                        <span class="product-available" th:if="${suplemento.isDeleted == null}">Em Estoque</span>
+                        <span class="product-available text-danger" th:if="${suplemento.isDeleted != null}">Indisponível</span>
+                    </div>
+
+                    <p><strong>Marca:</strong> <span th:text="${suplemento.marca}">Marca do Suplemento</span></p>
+                    <p><strong>SKU:</strong> <span th:text="${suplemento.codigoSku}">WHE-1234</span></p>
+                    <p><strong>Validade:</strong> <span th:text="${#temporals.format(suplemento.validade, 'dd/MM/yyyy')}">01/01/2025</span></p>
+
+                    <div class="add-to-cart" style="margin-top: 30px;">
+                        <a th:href="@{/adicionarCarrinho(id=${suplemento.id})}" class="add-to-cart-btn">
+                            <i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho
+                        </a>
+                    </div>
+
+                    <ul class="product-links">
+                        <li>Categoria:</li>
+                        <li><a href="#" th:text="${suplemento.tipo}">Tipo</a></li>
+                    </ul>
+
+                    <div style="margin-top: 20px;">
+                        <a th:href="@{/index}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Voltar para a Vitrine</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

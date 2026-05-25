@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Catálogo de Suplementos')}"></head>
+<body>
+
+<div th:replace="~{layout :: nav}"></div>
+<div th:replace="~{layout :: alertas}"></div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Nossos Suplementos</h3>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xs-6" th:each="suplemento : ${suplementos}">
+                <div class="product">
+                    <div class="product-img">
+                        <img th:src="@{${suplemento.imgUrl}}" alt="Imagem do Suplemento">
+                    </div>
+                    <div class="product-body">
+                        <p class="product-category" th:text="${suplemento.tipo}">Categoria</p>
+                        <h3 class="product-name"><a href="#" th:text="${suplemento.nome}">Nome do Produto</a></h3>
+                        <h4 class="product-price" th:text="|R$ ${suplemento.preco}|">R$ 00.00</h4>
+                    </div>
+                    <div class="add-to-cart">
+                        <a th:href="@{/adicionarCarrinho(id=${suplemento.id})}" class="add-to-cart-btn">
+                            <i class="fa fa-shopping-cart"></i> Adicionar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

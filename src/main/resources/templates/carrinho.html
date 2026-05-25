@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Seu Carrinho')}"></head>
+<body>
+
+<div th:replace="~{layout :: nav}"></div>
+<div th:replace="~{layout :: alertas}"></div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Seu Carrinho de Compras</h3>
+                </div>
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Categoria/Tipo</th>
+                        <th>Preço</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${itensCarrinho}">
+                        <td th:text="${item.nome}">Nome do Produto</td>
+                        <td th:text="${item.tipo}">Tipo</td>
+                        <td th:text="|R$ ${item.preco}|">R$ 00.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="pull-right" style="margin-top: 20px; margin-bottom: 40px;">
+                    <a th:href="@{/index}" class="primary-btn" style="margin-right: 10px;">Continuar Comprando</a>
+
+                    <a th:href="@{/finalizarCompra}" class="primary-btn">Finalizar Compra</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

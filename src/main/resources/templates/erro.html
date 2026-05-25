@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Página não encontrada')}"></head>
+<body>
+
+<div th:replace="~{layout :: nav}"></div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center" style="margin-top: 50px; margin-bottom: 50px;">
+                <i class="fa fa-exclamation-triangle text-danger" style="font-size: 80px; margin-bottom: 20px;"></i>
+
+                <h2 class="title">Oops! Algo correu mal.</h2>
+
+                <h4 th:text="${mensagemErro}" style="color: #666; margin-bottom: 30px;">Mensagem de erro aqui</h4>
+
+                <a th:href="@{/index}" class="primary-btn">Voltar para a Vitrine</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

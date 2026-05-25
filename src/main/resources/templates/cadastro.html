@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Cadastro de Suplemento')}"></head>
+<body>
+
+<div th:replace="~{layout :: nav}"></div>
+<div th:replace="~{layout :: alertas}"></div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="section-title">
+                    <h3 class="title">Cadastrar Novo Suplemento</h3>
+                </div>
+
+                <form th:action="@{/salvar}" th:object="${suplementoForm}" method="POST">
+
+                    <div class="form-group">
+                        <label>Nome do Suplemento</label>
+                        <input class="input" type="text" th:field="*{nome}" placeholder="Ex: Whey Protein">
+                        <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        <input class="input" type="text" th:field="*{tipo}" placeholder="Ex: Proteína, Pré-treino">
+                        <span class="text-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Código SKU</label>
+                        <input class="input" type="text" th:field="*{codigoSku}" placeholder="Ex: WHE-1234">
+                        <span class="text-danger" th:if="${#fields.hasErrors('codigoSku')}" th:errors="*{codigoSku}"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Marca</label>
+                        <input class="input" type="text" th:field="*{marca}" placeholder="Ex: Max Titanium">
+                        <span class="text-danger" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Preço (R$)</label>
+                        <input class="input" type="number" step="0.01" th:field="*{preco}" placeholder="Ex: 150.00">
+                        <span class="text-danger" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span>
+                    </div>
+
+                    <button type="submit" class="primary-btn" style="margin-top: 15px;">Salvar Suplemento</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

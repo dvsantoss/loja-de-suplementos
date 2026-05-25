@@ -1,0 +1,15 @@
+Para a entidade, quais 7 atributos coloco? esses?
+
+    Long id;
+
+    String descricao;
+
+    String Tipo; Ex: Cratina, pre treino, vitamina
+
+    Integer prioridade = 0;
+
+    Boolean isDeleted;
+
+    Integer faixaEtaria;
+
+    Coloco a validade como atributo ou isso não tem a ver com esse sistema especifico?
